@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Mobile Discovery</title>
+</head>
+
+<body>
+<script>
+
+$(document).ready(function () {
+    $.getJSON("http://jsonip.com/?callback=?", function (data) {
+
+	var ip = data.ip;
+        console.log(data);
+	document.getElementById("code").innerHTML = ip;
+    });
+});
+
+
+</script>
+	<div data-role="page" id="etusivu">
+		<div data-role="header">
+			<h1>Welcome <%= username %></h1>
+		</div>
+		<!-- /header -->
+		<div role="main" class="ui-content ui-body-a">
+
+		<div class="db-status">You are connected from: <span id="code"></span> as <span id="ipadd"><%= username %></span><br>
+		Activity will be logged</div>
+
+
+        <div data-role="content" id="content">
+            <div style="background-color: #fbfbfb;">
+                <IMG class="displayed" src="logo.png" alt="image" />
+            		</div>
+		<h2>Mobile Discovery</h2>
+		<p>Mobile Discovery is a mobile network information gathering tool. <br> Remember, you need hosts permission to scan services<br>
+		otherwise it might be considered as a cyber attack</p>
+			</div>
+
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#Scanner">Scan for services</a></li>
+			<li><a href="/data">Logs & Tools</a></li>
+			<li><a href="#tools">More tools</a></li>
+			<li><a href="#info">Info & logs</a></li>
+		</ul>
+			
+		</div>
+		<!-- /content -->
+		
+		<div data-role="footer">
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+					<li><a href="/data" data-icon="info">Logs</a></li>
+					<li><a href="#tools" data-icon="info">Tools</a></li>
+					<li><a href="#info" data-icon="gear">info</a></li>
+				</ul>
+			</div><!-- /navbar -->
+			<h4>mobile Discovery</h4>
+		</div>
+		<!-- /footer -->
+		
+	</div>
+	<!-- /page -->
+	
+	<div data-role="page" id="Scanner">
+		<div data-role="header">
+			<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-inline ui-btn-icon-notext ui-corner-all">Etsivulle</a>
+						<h1>Scanner</h1>
+		</div>
+		<!-- /header -->
+		
+		<div role="main" class="ui-content ui-body-a">
+		<div data-role="fieldcontain">
+			
+			<form id="loginformA" action="iploggin" method="post">
+			<label for="loginformA">Achtung! You will be redirected to front page <br>
+			resaults are available in logs section.</label>
+			<span id="ipadd" name="ipadd">Logged in as <%= username %></span>
+
+
+			<div data-role="fieldcontain">
+		    <label for="name2">Name:</label>
+		    <input type="text" name="nameR" id="nameR" value="For saving raport"  />
+		</div>
+			<div data-role="fieldcontain">
+			<label for="name2">IP:</label>
+		    <input type="text" name="name2" id="name2" value="Address"  />
+		</div>
+
+
+
+			<div data-role="fieldcontain">
+		    <label for="range">Range:</label>
+		    <input type="text" name="range" id="range" value="Port"  />
+		</div>
+			    <fieldset data-role="controlgroup" data-mini="true">
+				<legend>Options:</legend>
+				<input name="radio1" id="radio1" type="checkbox">
+				<label for="radio1">Ask for banners</label>
+				<input name="radio2" id="radio2" type="checkbox">
+				<label for="radio2">Most common ports</label>
+				<input name="radio3" id="radio3" type="checkbox">
+				<label for="radio3">Quick scan</label>
+				<input name="radio4" id="radio4" type="checkbox">
+				<label for="radio4">Full Scan</label>
+			    </fieldset>
+
+			<button href="" type="submit" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all"" >RUN</button>
+			</form>
+		</div>	
+	
+
+			<div data-role="collapsible">
+				<h2>Info</h2>
+				<p>Simple Scanner to scan port range on given ip address.<br> use "-" to separate port range start and end.</p>
+			</div>
+	
+
+			
+		</div>
+		<!-- /content -->
+		
+		
+		<div data-role="footer">
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+					<li><a href="/data" data-icon="info">Logs</a></li>
+					<li><a href="#tools" data-icon="info">Tools</a></li>
+					<li><a href="#info" data-icon="gear">info</a></li>
+				</ul>
+			</div><!-- /navbar -->
+			<h4>mobile Discovery</h4>
+		</div>
+		<!-- /footer -->
+		
+	</div>
+	<!-- /page -->
+	
+	<div data-role="page" id="listaSivu">
+		<div data-role="header">
+			<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-inline ui-btn-icon-notext ui-corner-all">Etsivulle</a>
+			<h1>Logs</h1>
+		</div>
+		<!-- /header -->
+		
+		<div role="main" class="ui-content ui-body-a">
+		<div data-role="fieldcontain">
+		    <label for="name">IP:</label>
+		    <input type="text" name="name" id="name" value="Address"  />
+		</div>	
+		<div data-role="fieldcontain">
+		    <label for="name">Start port:</label>
+		    <input type="text" name="name" id="name" value="Port"  />
+		</div>	
+		<div data-role="fieldcontain">
+		    <label for="name">End port:</label>
+		    <input type="text" name="name" id="name" value="Port"  />
+		</div>	
+<form>
+			    <fieldset data-role="controlgroup" data-mini="true">
+				<legend>Options:</legend>
+				<input name="radio-choice-v-6" id="radio-choice-v-6a" value="on" checked="checked" type="radio">
+				<label for="radio-choice-v-6a">incoming option</label>
+				<input name="radio-choice-v-6" id="radio-choice-v-6b" value="off" type="radio">
+				<label for="radio-choice-v-6b">incoming option</label>
+				<input name="radio-choice-v-6" id="radio-choice-v-6c" value="other" type="radio">
+				<label for="radio-choice-v-6c">incoming option</label>
+			    </fieldset>
+			</form>
+			<div data-role="collapsible">
+				<h2>Info</h2>
+				<p>todo: infotekstit</p>
+			</div>
+		<a href="#" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">Run</a>
+
+		
+
+	
+		
+		</div>
+		<!-- /content -->
+		
+		<div data-role="footer">
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+					<li><a href="/data" data-icon="info">Logs</a></li>
+					<li><a href="#tools" data-icon="info">Tools</a></li>
+					<li><a href="#info" data-icon="gear">info</a></li>
+				</ul>
+			</div><!-- /navbar -->
+			<h4>mobile Discovery</h4>
+		</div>
+		<!-- /footer -->
+		
+	</div>
+	<!-- /page -->
+	
+	<div data-role="page" id="tools">
+		<div data-role="header">
+			<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-inline ui-btn-icon-notext ui-corner-all">Etsivulle</a>
+			<h1>Tools</h1>
+		</div>
+		<!-- /header -->
+		
+		<div role="main" class="ui-content ui-body-a">
+			<h3>Sodan search-engine using API</h3>
+			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">Sodan</a>
+
+			<h3>Whois service to resolve ip</h3>
+			<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-inline ui-corner-all">Whois</a>
+
+			<h3>DNSEnum service, resolves domain to ip</h3>
+			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">DNSEnum</a>
+		
+		</div>
+		<!-- /content -->
+		
+		<div data-role="footer">
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+					<li><a href="/data" data-icon="info">Logs</a></li>
+					<li><a href="#tools" data-icon="info">Tools</a></li>
+					<li><a href="#info" data-icon="gear">info</a></li>
+				</ul>
+			</div><!-- /navbar -->
+			<h4>mobile Discovery</h4>
+		</div>
+		<!-- /footer -->
+		
+	</div>
+
+	<!-- /page -->
+
+	
+	<div data-role="page" id="info">
+	
+		<div data-role="panel" id="panelMenu" data-display="overlay">
+			<ul data-role="listview">
+				<li><a href="#Scanner">Painikkeet ja linkit</a></li>
+				<li><a href="/data">Listview</a></li>
+				<li><a href="#tools">Popup</a></li>
+				<li><a href="#panelSivu">Panel</a></li>
+				<li><a href="#info">Menu</a></li>
+			</ul>		
+		</div><!-- /panel -->
+		
+		
+		<div data-role="header">
+		<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-inline ui-btn-icon-notext ui-corner-all">Etsivulle</a>
+			<h1>Info</h1>
+		</div>
+		<!-- /header -->
+		
+		<div role="main" class="ui-content ui-body-a">
+			<h2>Info page</h2>
+			<div data-role="collapsible">
+			<h2>Logs</h2>
+			<p>todo kirjoita viimeiset db muokkaukset</p>
+			</div>
+			<div data-role="collapsible">
+			<h2>Info</h2>
+			<p>todo api info, versio info ja riippuvuudet</p>
+			</div>
+			<div data-role="collapsible">
+			<h2>Credits</h2>
+			<p>Clomez 2017</p>
+			</div>
+
+		</div>
+		<!-- /content -->
+		
+		<div data-role="footer">
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+					<li><a href="/data" data-icon="info">Logs</a></li>
+					<li><a href="#tools" data-icon="info">Tools</a></li>
+					<li><a href="#info" data-icon="gear">info</a></li>
+				</ul>
+			</div><!-- /navbar -->
+			<h4>mobile Discovery</h4>
+		</div>
+		<!-- /footer -->
+		
+	</div>
+
+</body>
+
+</html>

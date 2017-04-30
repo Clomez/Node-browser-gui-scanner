@@ -7,7 +7,7 @@ This is Node based, full browser gui port scanner with user authentication and l
 
 INFO:<br><br>
 
-MOBILE DISCOVERY 1.3<br>
+MOBILE DISCOVERY 1.4<br>
 NODE MOBILE SCANNER WITH BROWSER GUI<br>
 LICENCE: MIT<br>
 AUTHOR: CLOMEZ<br><br>
@@ -18,7 +18,10 @@ MYSQL<br>
 ////////////////////
 FEATURES
 //////////////////<br><br>
+1.4<br>
+ - Whois lookup tool added
 
+1.3<br>
  - Full working browser based GUI
  - Users may make scans and browse them later
  - User authentication system
@@ -26,6 +29,7 @@ FEATURES
  - Sign up page, but it's not in use by default
  - Testuser Test/User with limited access to tools
  - Scan reports are user dependant, but can be send as a file for others
+ - Whois lookup tool added
 
 ////////////////////
 INSTALL

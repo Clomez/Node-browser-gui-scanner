@@ -1,0 +1,23 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<p id="test"></p>
+<table>
+<script>var info = <%- info %>
+for (var i = 0; i < info.length; i++){
+document.getElementById("test").innerHTML += info[i].attribute+":  "+info[i].value+"<br>";
+}</script>
+</table>
+<a href="/#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all"" >Back</a> 
+</body>
+
+</html>

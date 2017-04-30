@@ -220,9 +220,14 @@ $(document).ready(function () {
 		<div role="main" class="ui-content ui-body-a">
 			<h3>Sodan search-engine using API</h3>
 			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">Sodan</a>
-
+			<form id="loginformB" action="whois" method="post">
 			<h3>Whois service to resolve ip</h3>
-			<a href="#etusivu" class="ui-btn ui-icon-home ui-btn-icon-left ui-btn-inline ui-corner-all">Whois</a>
+			<div data-role="fieldcontain">
+		    <label for="whois">enter target URL: </label>
+		    <input type="text" name="whois" id="whois" value="Address"  />
+		</div>	
+				<button href="" type="submit" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all" >Whois</button>
+				</form>
 
 			<h3>DNSEnum service, resolves domain to ip</h3>
 			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">DNSEnum</a>

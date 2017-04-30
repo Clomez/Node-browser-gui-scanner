@@ -9,6 +9,9 @@ var fs = require("fs");
 const passport = require('passport');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
+var util = require('util');
+var parser = require('parse-whois');
+var whois = require('node-whois');
 
 app.use(bodyParser());  // BodyParser
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -87,6 +90,23 @@ app.use(express.static(__dirname + '/Public'))
 		failureFlash : true // allow flash messages
 }));
 
+	// =====================================
+	// WHOIS ==============================
+	// =====================================
+	//Whois for url
+	app.post('/whois', function(req, res, next) {
+		var whoGet = req.body.whois;
+
+		    whois.lookup(whoGet, function(err, data){
+				if (err) throw err;
+			    
+				var info = parser.parseWhoIsData(data);
+				//console.log(info);
+				res.render("layout2", {info: JSON.stringify(info) });
+			    
+			});
+		
+	});
 
 
 	// =====================================

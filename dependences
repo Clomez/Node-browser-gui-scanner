@@ -1,15 +1,18 @@
 
-npm install express
-npm install express-session
-npm install body-parser
-npm install passport
-npm install cookie-parser
-npm install connect-flash
-npm install pasport-locale
-npm install bcrypt
-npm install mysql
-npm install portscanner
-npm install ejs
+sudo npm install express
+sudo npm install express-session
+sudo npm install body-parser
+sudo npm install passport
+sudo npm install cookie-parser
+sudo npm install connect-flash
+sudo npm install pasport-locale
+sudo npm install bcrypt
+sudo npm install mysql
+sudo npm install portscanner
+sudo npm install ejs
+sudo npm install bcrypt-nodejs
+sudo npm install node-whois
+sudo npm install parse-whois
 
 /// MYSQL  ////
 

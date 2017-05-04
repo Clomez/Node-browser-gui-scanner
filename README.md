@@ -43,9 +43,11 @@ FEATURES
 INSTALL
 //////////////////<br><br>
 
- - Remember to change mysql access info
- - Remember to make databases, Default is MySQL
- - Should be as easy as running index.js on your server
+ - 1. Remember to change mysql access info
+ - 2. Remember to make databases, Default is MySQL
+ - 2.5 there is simple templates for db creation in dependences
+ - 3. run "npm install"
+ - 4. Should be as easy as running index.js on your server
 
 
 

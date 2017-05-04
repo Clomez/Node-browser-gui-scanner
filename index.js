@@ -104,7 +104,7 @@ app.use(express.static(__dirname + '/Public'))
 			    
 				var info = parser.parseWhoIsData(data);
 				//console.log(info);
-				res.render("layout2", {info: JSON.stringify(info) });
+				res.render("whois", {info: JSON.stringify(info) });
 			    
 			});
 		
@@ -199,7 +199,7 @@ app.use(express.static(__dirname + '/Public'))
 			    throw err;
 			} else {
 			    obj = {print: result};
-			    res.render('layout', obj);                
+			    res.render('report', obj);                
 			}
 
 		//not admin

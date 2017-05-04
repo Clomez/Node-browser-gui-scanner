@@ -2,9 +2,10 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
-var PortScan = require("./scanner.js");
-var logger = require("./logger");
+var PortScan = require("./modules/scanner");
+var logger = require("./modules/logger");
 const testFolder = './Public/scan';
+var lookup = require("./modules/dnslookup");
 var fs = require("fs");
 const passport = require('passport');
 var cookieParser = require('cookie-parser');
@@ -12,6 +13,7 @@ var flash = require('connect-flash');
 var util = require('util');
 var parser = require('parse-whois');
 var whois = require('node-whois');
+require('./modules/passport.js')(passport);
 
 app.use(bodyParser());  // BodyParser
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -30,7 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-require('./passport.js')(passport);
+
 
 app.use(express.static(__dirname + '/Public'))
 
@@ -143,6 +145,21 @@ app.use(express.static(__dirname + '/Public'))
 });
 
 	// =====================================
+	// DNSLOOKUP ==============================
+	// =====================================
+	// Dnslookup module
+
+
+	app.get('/lookup', function (req, res, next) {
+	    lookup("www.google.me", function (err, result) {
+		if (err)  return console.error(err); 
+		console.log(result);
+		res.render("layout_lookup", { lookup: result });
+
+	    });
+	});
+
+	// =====================================
 	// REPORTS ==============================
 	// =====================================
 	//Bring back scan reports with id from MySQL
@@ -172,16 +189,34 @@ app.use(express.static(__dirname + '/Public'))
 
 	connection.connect()
 
-	connection.query("SELECT * FROM ipRes where owner = ?", [req.user.username],  function (err, result) {
+		//if admin
+		if(req.user.username == "admin"){
+
+			connection.query("SELECT * FROM ipRes", function (err, result) {
 
 
-		if(err){
-		    throw err;
-		} else {
-		    obj = {print: result};
-		    res.render('layout', obj);                
+			if(err){
+			    throw err;
+			} else {
+			    obj = {print: result};
+			    res.render('layout', obj);                
+			}
+
+		//not admin
+		}); } else{
+		connection.query("SELECT * FROM ipRes where owner = ?", [req.user.username],  function (err, result) {
+
+
+				if(err){
+				    throw err;
+				} else {
+				    obj = {print: result};
+				    res.render('layout', obj);                
+				}
+			
+			});
 		}
-	});
+		
 
 });
 

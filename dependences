@@ -1,18 +1,20 @@
 
-sudo npm install express
-sudo npm install express-session
-sudo npm install body-parser
-sudo npm install passport
-sudo npm install cookie-parser
-sudo npm install connect-flash
-sudo npm install pasport-locale
-sudo npm install bcrypt
-sudo npm install mysql
-sudo npm install portscanner
-sudo npm install ejs
-sudo npm install bcrypt-nodejs
-sudo npm install node-whois
-sudo npm install parse-whois
+express
+express-session
+body-parser
+passport
+cookie-parser
+connect-flash
+pasport-locale
+bcrypt
+mysql
+portscanner
+ejs
+bcrypt-nodejs
+node-whois
+parse-whois
+
+sudo npm install --save-dev express express-session body-parser passport cookie-parser connect-flash passport-local bcrypt mysql portscanner ejs bcrypt-nodejs node-whois parse-whois
 
 /// MYSQL  ////
 
@@ -29,19 +31,13 @@ owner VARCHAR(30) NOT NULL,
 reg_date TIMESTAMP
 ) 
 
-INSERT INTO ipRes (ip, link)
-VALUES ('127.0.0.1', 'jottai', 'Clomez');
-
-
 
 //// DB2 /////
 /// USER DB FOR PASSPORT ////
-/// YOU CAN ALSO RUN scripts/createdatabase.js INSTEAD ///
 
-CREATE TABLE users (
-email VARCHAR(30) NOT NULL,
-password VARCHAR(30) NOT NULL
-) 
-
-INSERT INTO users (email, password)
-VALUES ('127.0.0.1', 'jottai');
+CREATE TABLE users ( 
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT, 
+    username VARCHAR(20) NOT NULL, 
+    password CHAR(60) NOT NULL, 
+        PRIMARY KEY (id)
+)

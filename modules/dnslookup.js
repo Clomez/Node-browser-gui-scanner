@@ -1,10 +1,10 @@
-module.exports = lookup;
+module.exports = lookups;
 
-var dns = require('native-dns');
-var util = require('util');
-var ret;
+var ret = [];
 
-function lookup(url, callback) {
+function lookups(url, data) {
+    var dns = require('native-dns');
+    var util = require('util');
 
     var question = dns.Question({
         name: url,
@@ -20,21 +20,31 @@ function lookup(url, callback) {
     });
 
     req.on('timeout', function () {
-        console.log('Timeout in making request');
-        // RETURN ERROR OBJECT; SEND RESPONSE AS EMPTY
-        return (new Error('Timeout!'),null);
+        //console.log('Timeout in making request');
+        return (new Error("timeout"), null);
     });
 
     req.on('message', function (err, answer) {
+        var items = 0;
         answer.answer.forEach(function (a) {
-            console.log(a.address);
-            if (a.address != undefined) {
-                ret = a.address;
-                // RETURN ERROR AS NULL AND RESPONSE AS RET
-                return (null,ret);
-            }
+            //console.log(a.address);
+            ret.push(a.address);
+            items++;
 
         });
+            if(items === answer.answer.length){
+                data (null,ret);
+            }
+
     });
+
+    req.on('end', function () {
+        var delta = (Date.now()) - start;
+        //console.log('Finished processing request: ' + delta.toString() + 'ms');
+
+
+    });
+
+    req.send();
 
 }

@@ -14,8 +14,9 @@ bcrypt-nodejs
 node-whois
 parse-whois
 native-dns
+net
 
-sudo npm install --save express express-session body-parser passport cookie-parser connect-flash passport-local bcrypt mysql portscanner ejs bcrypt-nodejs node-whois parse-whois native-dns
+sudo npm install --save express express-session body-parser passport cookie-parser connect-flash passport-local bcrypt mysql portscanner ejs bcrypt-nodejs node-whois parse-whois native-dns net
 
 /// MYSQL  ////
 

@@ -32,13 +32,7 @@ function PortScan(ip, range, nameR, range2, owner){
 			return console.log(err);
 		    }
 
-		
-
-		
-
-
 				if (err) throw err
-			
 
 			    connection.query('INSERT INTO ipRes (ip, link, owner) VALUES (?, ?, ?)', [ip, nameR, owner], function(err, result) {
 			      if (err) throw err

@@ -53,7 +53,7 @@ $(document).ready(function () {
 			<li><a href="#Scanner">Scan for services</a></li>
 			<li><a href="/data">Logs & Tools</a></li>
 			<li><a href="#tools">More tools</a></li>
-			<li><a href="#info">Info & logs</a></li>
+			<li><a href="#info" data-icon="gear">socket tools</a></li>
 		</ul>
 			
 		</div>
@@ -65,7 +65,7 @@ $(document).ready(function () {
 					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
 					<li><a href="/data" data-icon="info">Logs</a></li>
 					<li><a href="#tools" data-icon="info">Tools</a></li>
-					<li><a href="#info" data-icon="gear">info</a></li>
+					<li><a href="#info" data-icon="gear">socket</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<h4>mobile Discovery</h4>
@@ -140,7 +140,7 @@ $(document).ready(function () {
 					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
 					<li><a href="/data" data-icon="info">Logs</a></li>
 					<li><a href="#tools" data-icon="info">Tools</a></li>
-					<li><a href="#info" data-icon="gear">info</a></li>
+					<li><a href="#info" data-icon="gear">socket</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<h4>mobile Discovery</h4>
@@ -198,9 +198,11 @@ $(document).ready(function () {
 			<div data-role="navbar" data-iconpos="bottom">
 				<ul>
 					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
+
 					<li><a href="/data" data-icon="info">Logs</a></li>
 					<li><a href="#tools" data-icon="info">Tools</a></li>
-					<li><a href="#info" data-icon="gear">info</a></li>
+					<li><a href="#info" data-icon="gear">socket</a></li>
+
 				</ul>
 			</div><!-- /navbar -->
 			<h4>mobile Discovery</h4>
@@ -221,7 +223,7 @@ $(document).ready(function () {
 			<h3>Sodan search-engine using API</h3>
 			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">Sodan</a>
 			<form id="loginformB" action="whois" method="post">
-			<h3>Whois service to resolve ip</h3>
+			<h3>Whois service for URL data</h3>
 			<div data-role="fieldcontain">
 		    <label for="whois">enter target URL: </label>
 		    <input type="text" name="whois" id="whois" value="Address"  />
@@ -229,8 +231,14 @@ $(document).ready(function () {
 				<button href="" type="submit" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all" >Whois</button>
 				</form>
 
-			<h3>DNSEnum service, resolves domain to ip</h3>
-			<a href="#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all">DNSEnum</a>
+			<form id="lookup" action="lookup" method="post">
+				<h3>Resolve domain to IP</h3>
+				<div data-role="fieldcontain">
+					<label for="dnslookup">enter target URL: </label>
+					<input type="text" name="dnslookup" id="dnslookup" value="URL"  />
+				</div>
+				<button href="" type="submit" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all" >Resolve</button>
+			</form>
 		
 		</div>
 		<!-- /content -->
@@ -241,7 +249,7 @@ $(document).ready(function () {
 					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
 					<li><a href="/data" data-icon="info">Logs</a></li>
 					<li><a href="#tools" data-icon="info">Tools</a></li>
-					<li><a href="#info" data-icon="gear">info</a></li>
+					<li><a href="#info" data-icon="gear">socket</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<h4>mobile Discovery</h4>
@@ -249,6 +257,10 @@ $(document).ready(function () {
 		<!-- /footer -->
 		
 	</div>
+
+<!-- /page -->
+
+
 
 	<!-- /page -->
 
@@ -261,7 +273,7 @@ $(document).ready(function () {
 				<li><a href="/data">Listview</a></li>
 				<li><a href="#tools">Popup</a></li>
 				<li><a href="#panelSivu">Panel</a></li>
-				<li><a href="#info">Menu</a></li>
+				<li><a href="#info" data-icon="gear">socket</a></li>
 			</ul>		
 		</div><!-- /panel -->
 		
@@ -273,21 +285,44 @@ $(document).ready(function () {
 		<!-- /header -->
 		
 		<div role="main" class="ui-content ui-body-a">
-			<h2>Info page</h2>
-			<div data-role="collapsible">
-			<h2>Logs</h2>
-			<p>todo kirjoita viimeiset db muokkaukset</p>
-			</div>
-			<div data-role="collapsible">
-			<h2>Info</h2>
-			<p>todo api info, versio info ja riippuvuudet</p>
-			</div>
-			<div data-role="collapsible">
-			<h2>Credits</h2>
-			<p>Clomez 2017</p>
-			</div>
+			<h2>Socket tools</h2>
+			<form id="socket" action="socket" method="post">
+				<span id="ipadd" name="ipadd">Logged in as <%= username %></span>
 
-		</div>
+
+				<div data-role="fieldcontain">
+					<label for="socketip">Target IP:</label>
+					<input type="text" name="socketip" id="socketip" value="Address"  />
+				</div>
+
+
+
+				<div data-role="fieldcontain">
+					<label for="port">Target port:</label>
+					<input type="number" name="port" id="port" value="Port"  />
+				</div>
+				<fieldset data-role="controlgroup" data-mini="true">
+
+
+					<div data-role="fieldcontain">
+						<label for="string">String:</label>
+						<input type="text" name="string" id="string" value="Give a string to send..."  />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="timeout">Timeout:</label>
+						<input type="text" name="timeout" id="timeout" value="Timeout in ms"  />
+					</div>
+					<legend>Options:</legend>
+					<input name="radio11" id="radio11" type="checkbox">
+					<label for="radio11">Send file</label>
+					<input name="radio22" id="radio22" type="checkbox">
+					<label for="radio22">Send String</label>
+				</fieldset>
+
+				<button href="" type="submit" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all" >RUN</button>
+			</form>
+
+	</div>
 		<!-- /content -->
 		
 		<div data-role="footer">
@@ -296,7 +331,7 @@ $(document).ready(function () {
 					<li><a href="#Scanner" data-icon="info">Scanner</a></li>
 					<li><a href="/data" data-icon="info">Logs</a></li>
 					<li><a href="#tools" data-icon="info">Tools</a></li>
-					<li><a href="#info" data-icon="gear">info</a></li>
+					<li><a href="#info" data-icon="gear">socket</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<h4>mobile Discovery</h4>

@@ -3,9 +3,8 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 var PortScan = require("./modules/scanner");
-var logger = require("./modules/logger");
 const testFolder = './Public/scan';
-var lookup = require("./modules/dnslookup");
+var lookups = require("./modules/dnslookup");
 var fs = require("fs");
 const passport = require('passport');
 var cookieParser = require('cookie-parser');
@@ -14,6 +13,9 @@ var util = require('util');
 var parser = require('parse-whois');
 var whois = require('node-whois');
 require('./modules/passport.js')(passport);
+var dns = require('native-dns');
+var util = require('util');
+var sockettool = require("./modules/socket");
 
 app.use(bodyParser());  // BodyParser
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -110,6 +112,28 @@ app.use(express.static(__dirname + '/Public'))
 		
 	});
 
+	// =====================================
+	// SOCKET ==============================
+	// =====================================
+	//Socket stuff
+	app.post('/socket', function(req, res, next) {
+		var targetip = req.body.socketip;
+        var whoGet = req.body.port;
+        var string = req.body.string;
+        var timeout = req.body.timeout;
+        var radio11 = req.body.radio11;
+        var radio22 = req.body.radio22;
+        var port = req.body.port;
+
+        sockettool(targetip, whoGet, string, timeout, function (err, data){
+            if (err) return console.log(err);
+            console.log(data);
+            res.render("layout_lookup", { list: data});
+
+        });
+
+    });
+
 
 	// =====================================
 	// IPLOGGER ==============================
@@ -124,20 +148,31 @@ app.use(express.static(__dirname + '/Public'))
 	//IP & RANGE
 		var code = req.body.name2;
 		var range = req.body.range;
+		var rangef = "full";
 	//ARRAY FROM RANGE
 		var range2 = range.split("-");
 		var list = [];
 		for(i = range2[0]; i<= range2[1]; i++){
 		list.push(i);
 		}
-	
+        var listfull = [];
+        for(i = 0; i<= 655000; i++){
+            rangef.push(i);
+        }
 	//OPTIONS
-		var radioa = req.body.radio1;
-		var radiob = req.body.radio2;
-		var radioc = req.body.radio3;
-		var set = PortScan(code, list, nameR, range, req.user.username);
+		var radioa = req.body.radio1; // ask for banners
+		var radiob = req.body.radio2; // most common
+		var radioc = req.body.radio3; // quick
+        var radiod = req.body.radio4; // full scan
+		//FULL SCAN
+			if(radiod === "on"){
+				var set = PortScan(code, listfull, nameR, range, req.user.username);
+				var iphost = getClientIP(req);
+			}
+		//NORMAL SCAN
+		var set = PortScan(code, list, nameR, rangef, req.user.username);
 		var iphost = getClientIP(req);
-		var logg = logger(req.user.username, code, range, iphost);
+
 
 
 	res.render("index", { username: req.user.username });
@@ -147,17 +182,22 @@ app.use(express.static(__dirname + '/Public'))
 	// =====================================
 	// DNSLOOKUP ==============================
 	// =====================================
-	// Dnslookup module
+	// Dnslookup module resolve domain to ip
 
 
-	app.get('/lookup', function (req, res, next) {
-	    lookup("www.google.me", function (err, result) {
-		if (err)  return console.error(err); 
-		console.log(result);
-		res.render("layout_lookup", { lookup: result });
+	app.post('/lookup', function(req, res){
+		var url = req.body.dnslookup;
 
-	    });
+
+			lookups(url, function (err, data){
+				if (err) return console.log(err);
+				//console.log(data);
+				res.render("layout_lookup", { list: data});
+
+               });
+
 	});
+
 
 	// =====================================
 	// REPORTS ==============================
@@ -211,7 +251,7 @@ app.use(express.static(__dirname + '/Public'))
 				    throw err;
 				} else {
 				    obj = {print: result};
-				    res.render('layout', obj);                
+				    res.render('report', obj);
 				}
 			
 			});

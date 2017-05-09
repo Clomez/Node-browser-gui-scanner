@@ -7,19 +7,32 @@ This is Node based, full browser gui port scanner with user authentication and l
 
 INFO:<br><br>
 
-MOBILE DISCOVERY 1.4.5<br>
+MOBILE DISCOVERY 1.4.8<br>
 NODE MOBILE SCANNER WITH BROWSER GUI<br>
 LICENCE: MIT<br>
 AUTHOR: CLOMEZ<br><br>
 
-NODE 4.2.6<br>
+NODE 4.3<br>
 MYSQL<br>
-
 ////////////////////
 FEATURES
 //////////////////<br><br>
 
+TODO
 
+////////////////////
+LOGS
+//////////////////<br><br>
+
+1.5<br>
+ - dns domain to ip resolver module
+ - simple version of socket tools
+ - some cleanup
+
+1.4.8<br>
+ - Fixed bugs
+ - Better UI for mobile
+ - Started socket and dnsenumeration tools
 
 1.4.5<br>
  - admin account with all the logs and tools
@@ -55,9 +68,11 @@ INSTALL
 TODO
 //////////////////<br><br>
 
- - Socket connector
+ - more options for socket tool
  - better db connection handling
- - Rename views
+ - modifiers
+ - socket result display
+ - spelling mistakes
  
 <img src="http://i.imgur.com/TbZk9tO.png"><br>
 <img src="http://i.imgur.com/2MSA2EG.png">

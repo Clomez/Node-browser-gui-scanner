@@ -2,12 +2,12 @@
 This is Node based, full browser gui port scanner with user authentication and logs
 <br><br>
 
-<img src="http://i.imgur.com/ZiYgYYu.png"><br><br>
+<img src="http://i.imgur.com/woPpUtq.png"><br><br>
 
 
 INFO:<br><br>
 
-MOBILE DISCOVERY 1.4.8<br>
+MOBILE DISCOVERY 1.5.1<br>
 NODE MOBILE SCANNER WITH BROWSER GUI<br>
 LICENCE: MIT<br>
 AUTHOR: CLOMEZ<br><br>
@@ -16,13 +16,26 @@ NODE 4.3<br>
 MYSQL<br>
 ////////////////////
 FEATURES
-//////////////////<br><br>
+//////////////////<br>
 
-TODO
+- Fully working, browser based GUI
+- Scan for services in given IP
+- Whois lookup
+- Resolve domains into IP's
+- Admin / User / test accounts
+- Full log about everything
 
 ////////////////////
 LOGS
 //////////////////<br><br>
+
+1.5.1<br>
+ - responsive login
+ - cleanup
+ - better socket tools
+ 
+ - logs are broken...
+
 
 1.5<br>
  - dns domain to ip resolver module
@@ -56,11 +69,11 @@ LOGS
 INSTALL
 //////////////////<br><br>
 
- - 1. Remember to change mysql access info
- - 2. Remember to make databases, Default is MySQL
- - 2.5 there is simple templates for db creation in dependences
- - 3. run "npm install"
- - 4. Should be as easy as running index.js on your server
+ - 1 -Remember to change mysql access info
+ - 2 -Remember to make databases, Default is MySQL
+ - 2.5 -there is simple templates for db creation in dependences
+ - 3 -run "npm install"
+ - 4 -Should be as easy as running index.js on your server
 
 
 
@@ -73,6 +86,6 @@ TODO
  - modifiers
  - socket result display
  - spelling mistakes
- 
-<img src="http://i.imgur.com/TbZk9tO.png"><br>
+
+<img src="http://i.imgur.com/h4rvIZm.png"><br>
 <img src="http://i.imgur.com/2MSA2EG.png">

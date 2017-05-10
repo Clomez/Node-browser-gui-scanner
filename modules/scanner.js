@@ -21,10 +21,10 @@ function PortScan(ip, range, nameR, range2, owner){
 		fs.writeFile("Public/scan/" + ip, 
 		"<!DOCTYPE html>"+
 		"<head>" +
-		"<title>Resault of: " + nameR + "</title>" +
+		"<title>Results of: " + nameR + "</title>" +
 		"</head>" +
 		"<body> " +
-		"<h1>Resaults of: " + ip + "</h1><br>" +
+		"<h1>Results of: " + ip + "</h1><br>" +
 		"<p> Target IP was: " + ip + " -- on range of " + range2 + " </p>" +
 		"<p> Port in use at: " + port + "</p><br>" +
 		'<a href="/#etusivu" class="ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-corner-all"" >Back</a> ', function(err) {

@@ -122,15 +122,26 @@ app.use(express.static(__dirname + '/Public'))
         var string = req.body.string;
         var timeout = req.body.timeout;
         var radio11 = req.body.radio11;
-        var radio22 = req.body.radio22;
+        var radio33 = req.body.radio33;
+
         var port = req.body.port;
+        // HTTP GET SOCKET
+		if(radio33 === "on"){
+			var stringhttp = "GET / HTTP/1.0";
+			var porthttp = 80;
+			sockettool(targetip, porthttp, stringhttp, timeout, function (err, data){
+				if (err) return console.log(err);
+				console.log(data);
+				res.render("layout_lookup", { list: data});
 
-        sockettool(targetip, whoGet, string, timeout, function (err, data){
-            if (err) return console.log(err);
-            console.log(data);
-            res.render("layout_lookup", { list: data});
-
-        });
+			});
+        }else{
+            sockettool(targetip, whoGet, string, timeout, function (err, data){
+                if (err) return console.log(err);
+                console.log(data);
+                res.render("layout_socket", { list: data});
+            });
+		}
 
     });
 
@@ -187,7 +198,6 @@ app.use(express.static(__dirname + '/Public'))
 
 	app.post('/lookup', function(req, res){
 		var url = req.body.dnslookup;
-
 
 			lookups(url, function (err, data){
 				if (err) return console.log(err);
